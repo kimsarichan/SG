@@ -1,4 +1,3 @@
-
 import random 
 import collections
 
@@ -36,9 +35,14 @@ class GA(object):
         return id1,id2
         
     def _mutation(self, ind):
-        """
-        Mutation function ..... coming soon
-        """     
+       for i in range(ind):
+         n=random.uniform(0,1)
+         if n <= self.mut_rate:
+          if ind[i] == '1':
+                ind[i] = '0'
+          else: 
+                ind[i] = '1'
+        return ind 
 
     def _selection(self, pop):
         """
@@ -52,9 +56,13 @@ class GA(object):
             n=n-ind.fitness
         return ind
 
-
+class populasi (object):
+    def inisialisasi_populasi(jum_pop, jum_fitness) :
+         pop = ["".join([str(random.randint(0,1)) for _ in range(8)]) for _ in range(jum_pop)]
+         pops=[Individu(ind,  jum_fitness) for ind in pop]
+         return pops
     
-if __name__ == "__main__":    
+if __name__ == "__main__":
     def decode(ind):
         """
         Decode string individual into integer x,y (as function parameter)
@@ -84,13 +92,12 @@ if __name__ == "__main__":
         return 1 * 1.0 / f + .1
     ga = GA()
 
+
     #init population
-    pop = ["".join([str(random.randint(0,1)) for _ in range(8)]) for _ in range(ga.jum_pop)]
-    populasi=[Individu(ind,  calculate_fitness(ind)) for ind in pop]
+    p= populasi()
+    populasi(ga.jum_pop, calculate_fitness(ind))    
     ga.solve(calculate_fitness, pop, generation=10)
     ind1=ga._selection(populasi)
     ind2=ga._selection(populasi)
     print ga._selection(populasi)
     print ga._crossover(ind1,ind2)
-
-
