@@ -35,14 +35,14 @@ class GA(object):
         return id1,id2
         
     def _mutation(self, ind):
-    	for i in range(ind):
-    		n=random.uniform(0,1)
-    		if n <= self.mut_rate:
-    			if ind[i] == '1':
-    				ind[i] = '0'
-    		else:
-    			ind[i] = '1'
-    	return ind 
+       for i in range(ind):
+         n=random.uniform(0,1)
+         if n <= self.mut_rate:
+          if ind[i] == '1':
+                ind[i] = '0'
+          else: 
+                ind[i] = '1'
+       return ind 
 
     def _selection(self, pop):
         """
@@ -57,7 +57,7 @@ class GA(object):
         return ind
 
 class populasi (object):
-    def inisialisasi_populasi(jum_pop, jum_fitness) :
+    def inisialisasi_populasi(jum_pop) :
          pop = ["".join([str(random.randint(0,1)) for _ in range(8)]) for _ in range(jum_pop)]
          pops=[Individu(ind,  jum_fitness) for ind in pop]
          return pops
@@ -91,11 +91,11 @@ if __name__ == "__main__":
         f = 3*(x**2) + 2*(y**2) - (4*x) + (y*1.0/2)
         return 1 * 1.0 / f + .1
     ga = GA()
-
+    
 
     #init population
-    p= populasi()
-    pop = p.inisialisasi_populasi(ga.jum_pop, calculate_fitness(ind))    
+    pop = ["".join([str(random.randint(0,1)) for i in range(8)]) for i in range(ga.jum_pop)]
+    populasi=[Individu(ind,  calculate_fitness(ind)) for ind in pop]
     ga.solve(calculate_fitness, pop, generation=10)
     ind1=ga._selection(populasi)
     ind2=ga._selection(populasi)
