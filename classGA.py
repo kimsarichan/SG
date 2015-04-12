@@ -133,7 +133,7 @@ class Individu(object):
 		x = val[0]
 		y = val[1]
 		f= 3*(x**2) + 2*(y**2) - (4*x) + (y*1.0/2)
-		return 1 * 1.0 / (f + 0.01	)	
+		return 1 * 1.0 / (f + 0.01)	
 
 	def __init__(self, jmlBit=0):
 		if jmlBit>0:			
@@ -189,5 +189,5 @@ if __name__ == '__main__':
 	#bestIndividu = ga.solve(popAwal) #jalankan jika ingin batas stagnant default 500
 
 	print 'Best Individu kromosom: ', bestIndividu.decode(bestIndividu.kromosom)
-	print 'Best Individu fitness: ', bestIndividu.fitness
+	print 'Best Individu fitness: ', bestIndividu.fitness, '%'
 
